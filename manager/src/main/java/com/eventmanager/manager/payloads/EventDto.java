@@ -1,9 +1,6 @@
 package com.eventmanager.manager.payloads;
 
 import java.util.Date;
-import java.util.Set;
-
-import com.eventmanager.manager.entities.Student;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +29,4 @@ public class EventDto {
 	private Date dateOfEvent;
 	
 	private OrganiserDto organiser;
-	
-	private Set<Student> students;
 }

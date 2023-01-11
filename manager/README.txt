@@ -33,3 +33,13 @@ Relations:
 			 EVent
 			 event
 			 event
+			 
+1 Event -> Many student Registrations
+			 
+Flow of Events
+1. Any College admin can register its college
+2. There will be one single admin to add all admins
+3. Separate domain name for students
+4. Any organiser can CRUD any event
+5. Students can read event, register in event
+6. Separate registrations table

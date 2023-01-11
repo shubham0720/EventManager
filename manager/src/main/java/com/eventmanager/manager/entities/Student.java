@@ -32,4 +32,7 @@ public class Student {
 	
 	@Column(name = "dept")
 	private String dept;
+	
+//	@OneToMany(mappedBy = "registrations", cascade = CascadeType.ALL)
+//	private Set<Registration> registrations = new HashSet<>();
 }
