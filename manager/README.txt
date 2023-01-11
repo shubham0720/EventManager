@@ -43,3 +43,9 @@ Flow of Events
 4. Any organiser can CRUD any event
 5. Students can read event, register in event
 6. Separate registrations table
+
+Security:
+1. Vesit admin/student accessing the portal:
+	Admin Can CRUD vesit events only
+	Student can read/register in vesit events only
+	
