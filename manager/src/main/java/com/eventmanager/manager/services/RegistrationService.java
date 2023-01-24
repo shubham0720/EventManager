@@ -9,6 +9,8 @@ public interface RegistrationService {
 	
 	List<RegistrationDto> getAllRegistrations();
 	
+	List<RegistrationDto> getRegistrationByEvent(Integer eventId);
+	
 	RegistrationDto getRegById(Integer regId);
 	
 	void deleteRegistration(Integer regId);

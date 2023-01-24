@@ -44,9 +44,15 @@ public class RegistrationController {
 		return new ResponseEntity<>(regDto, HttpStatus.OK);
 	}
 	
+	@GetMapping("/event/{eventId}")
+	public ResponseEntity<List<RegistrationDto>> getRegByEvent(@PathVariable Integer eventId){
+		List<RegistrationDto> regByEvent = this.regService.getRegistrationByEvent(eventId);
+		return new ResponseEntity<>(regByEvent, HttpStatus.OK);
+	}
+	
 	@DeleteMapping("/{regId}")
 	public ResponseEntity<ApiResponse> deleteRegistration(@PathVariable Integer regId) {
 		this.regService.deleteRegistration(regId);
-		return new ResponseEntity<ApiResponse>(new ApiResponse("Event Deleted Successfully", true), HttpStatus.OK);
+		return new ResponseEntity<ApiResponse>(new ApiResponse("Registration Deleted Successfully", true), HttpStatus.OK);
 	}
 }

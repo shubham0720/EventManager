@@ -69,4 +69,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 				.orElseThrow(() -> new ResourceNotFoundException("Registration", "regId", regId)));
 	}
 
+	@Override
+	public List<RegistrationDto> getRegistrationByEvent(Integer eventId) {
+		Event event = this.eventRepo.findById(eventId).orElseThrow(() -> new ResourceNotFoundException("Event", "eventId", eventId));
+		List<Registration> regs = this.regRepo.findByEvent(event);
+		List<RegistrationDto> regDtos = regs.stream().map((reg) -> this.modelMapper.map(reg, RegistrationDto.class)).collect(Collectors.toList());
+		return regDtos;
+	}
+
 }
