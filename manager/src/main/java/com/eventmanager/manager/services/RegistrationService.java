@@ -11,6 +11,10 @@ public interface RegistrationService {
 	
 	List<RegistrationDto> getRegistrationByEvent(Integer eventId);
 	
+	List<RegistrationDto> getRegistrationByStudent(Integer stdId);
+	
+	RegistrationDto getRegistrationByEventAndStudent(Integer eventId, Integer stdId);
+	
 	RegistrationDto getRegById(Integer regId);
 	
 	void deleteRegistration(Integer regId);

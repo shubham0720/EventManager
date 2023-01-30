@@ -23,6 +23,19 @@ public class RegistrationController {
 
 	@Autowired
 	private RegistrationService regService;
+	
+	@GetMapping("/event/{eventId}/student/{stdId}")
+	public ResponseEntity<RegistrationDto> getRegistrationByEventAndStudent(@PathVariable Integer eventId, @PathVariable Integer stdId){
+		try {
+			RegistrationDto getReg = this.regService.getRegistrationByEventAndStudent(eventId, stdId);
+			System.out.println(getReg);
+			return new ResponseEntity<RegistrationDto>(getReg, HttpStatus.OK);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return new ResponseEntity<RegistrationDto>(HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
 
 	@PostMapping("/event/{eventId}/student/{stdId}")
 	public ResponseEntity<RegistrationDto> createRegistration(@RequestBody RegistrationDto regDto,
@@ -48,6 +61,12 @@ public class RegistrationController {
 	public ResponseEntity<List<RegistrationDto>> getRegByEvent(@PathVariable Integer eventId){
 		List<RegistrationDto> regByEvent = this.regService.getRegistrationByEvent(eventId);
 		return new ResponseEntity<>(regByEvent, HttpStatus.OK);
+	}
+	
+	@GetMapping("/student/{stdId}")
+	public ResponseEntity<List<RegistrationDto>> getRegByStudent(@PathVariable Integer stdId){
+		List<RegistrationDto> regByStudent = this.regService.getRegistrationByStudent(stdId);
+		return new ResponseEntity<>(regByStudent, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{regId}")

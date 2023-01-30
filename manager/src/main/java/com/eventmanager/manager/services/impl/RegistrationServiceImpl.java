@@ -77,4 +77,22 @@ public class RegistrationServiceImpl implements RegistrationService {
 		return regDtos;
 	}
 
+	@Override
+	public List<RegistrationDto> getRegistrationByStudent(Integer stdId) {
+		Student std = this.stdRepo.findById(stdId).orElseThrow(() -> new ResourceNotFoundException("Student", "stdId", stdId));
+		List<Registration> regs = this.regRepo.findByStudent(std);
+		List<RegistrationDto> regDtos = regs.stream().map((reg) -> this.modelMapper.map(reg, RegistrationDto.class)).collect(Collectors.toList());
+		return regDtos;
+	}
+
+	@Override
+	public RegistrationDto getRegistrationByEventAndStudent(Integer eventId, Integer stdId) {
+		Event event = this.eventRepo.findById(eventId)
+				.orElseThrow(() -> new ResourceNotFoundException("Event", "eventId", eventId));
+		Student student = this.stdRepo.findById(stdId)
+				.orElseThrow(() -> new ResourceNotFoundException("Student", "stdId", stdId));
+		Registration reg = this.regRepo.findByEventAndStudent(event, student);
+		return this.modelMapper.map(reg, RegistrationDto.class);
+	}
+
 }
