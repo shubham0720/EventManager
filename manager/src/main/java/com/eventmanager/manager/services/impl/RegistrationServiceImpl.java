@@ -68,6 +68,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 		this.regRepo.delete(this.regRepo.findById(regId)
 				.orElseThrow(() -> new ResourceNotFoundException("Registration", "regId", regId)));
 	}
+	
+	@Override
+	public void deleteRegistrationByEventAndStudentId(Integer eventId, Integer stdId) {
+		Event event = this.eventRepo.findById(eventId).orElseThrow(() -> new ResourceNotFoundException("Event", "eventId", eventId));
+		Student student = this.stdRepo.findById(stdId).orElseThrow(() -> new ResourceNotFoundException("Student", "stdId", stdId));
+		this.regRepo.delete(this.regRepo.findByEventAndStudent(event, student));
+	}
 
 	@Override
 	public List<RegistrationDto> getRegistrationByEvent(Integer eventId) {

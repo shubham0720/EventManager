@@ -18,4 +18,6 @@ public interface RegistrationService {
 	RegistrationDto getRegById(Integer regId);
 	
 	void deleteRegistration(Integer regId);
+
+	void deleteRegistrationByEventAndStudentId(Integer eventId, Integer stdId);
 }

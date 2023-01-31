@@ -74,4 +74,10 @@ public class RegistrationController {
 		this.regService.deleteRegistration(regId);
 		return new ResponseEntity<ApiResponse>(new ApiResponse("Registration Deleted Successfully", true), HttpStatus.OK);
 	}
+	
+	@DeleteMapping("/event/{eventId}/student/{stdId}")
+	public ResponseEntity<ApiResponse> deleteRegistrationByEventAndStudent(@PathVariable Integer eventId, @PathVariable Integer stdId){
+		this.regService.deleteRegistrationByEventAndStudentId(eventId, stdId);
+		return new ResponseEntity<ApiResponse>(new ApiResponse("Registration Delete Successfully with Event id " + eventId + " and studentId " + stdId + "", true), HttpStatus.OK);
+	}
 }
